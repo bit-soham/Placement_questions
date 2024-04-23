@@ -5,5 +5,11 @@
     <div class="loginBlock">
         <img class="login_logo" src="{% static 'logo_nobg.png' %}" alt="logo"   >
         <div class="login_heading_block" ><span class="login_heading_text">Questionnaire</span></div>
+        <form class="login_form">
+            {% csrf_token %}
+            {{form.username}}
+            {{form.password}}
+            <input type="submit" class="login_submit_btn" value="Login">
+        </form>
     </div>
 </body>{% endblock %}

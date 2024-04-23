@@ -19,8 +19,8 @@ from django.db import IntegrityError # type: ignore
 # SECRET_KEY = 'c544efcf10d5ecf720c9318e460cb3c2270a9637f34641142df4b437d43857df'
 
 class LoginForm(forms.Form):
-    username = forms.CharField(strip=True, required=True, min_length=8, widget=forms.TextInput(attrs={ 'autofocus': True, 'class': 'form-control', 'placeholder': 'Username'}))
-    password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password (min 8 char)'}))
+    username = forms.CharField(strip=True, required=True, min_length=8, widget=forms.TextInput(attrs={ 'autofocus': True, 'class': 'login_username', 'placeholder': 'Username', 'autocomplete': 'off'}))
+    password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'login_password', 'placeholder': 'Password (min 8 char)', 'autocomplete': 'off'}))
 
 class RegisterForm(forms.Form):
     username = forms.CharField(strip=True, required=True, min_length=8, widget=forms.TextInput(attrs={ 'autofocus': True, 'class': 'form-control', 'placeholder': 'Username', 'id': 'register_username'}))
@@ -169,12 +169,12 @@ def login_view(request):
                 })
         else:
             return render(request, "questions/login.html", {
-                "forms": LoginForm()
+                "form": LoginForm()
             })
     else:
         print("hello")
         return render(request, "questions/login.html", {
-            "forms": LoginForm()
+            "form": LoginForm()
         }) 
          
 @login_required

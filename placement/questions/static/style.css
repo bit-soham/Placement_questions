@@ -1,0 +1,52 @@
+@font-face{
+    font-family: 'Platypi-Italic';
+    src: url('fonts/Platypi-Italic.ttf');
+}
+@font-face{
+    font-family: 'Platypi';
+    src: url('fonts/Platypi.ttf');
+}
+@font-face{
+    font-family: 'Acme-Regular';
+    src: url('fonts/Acme-Regular.ttf');
+}
+.loginBody{
+    /* background-color: yellow ;
+    /* background-image: url("background.jpeg") ; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover; 
+    background-image: radial-gradient(circle 5px at 67% 49%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 15% 85%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 26% 60%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 24% 96%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 26% 73%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 85% 15%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 19% 63%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 12% 68%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 72% 48%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 48% 31%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle at center right, rgb(53,53,53) 0%, rgb(53,53,53) 14%,transparent 14%, transparent 86%),linear-gradient(0deg, hsla(284,95%,60%,1),hsla(269,95%,60%,1));
+}
+.loginBlock{
+    width: 45vw;
+    max-width: 400px;
+    height: 550px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    /* border: 1px solid red;  */
+    position: absolute;
+    background: black;
+    opacity: 0.8;
+    border-radius: 20px
+}
+.login_heading_block{
+    /* border: 1px solid red; */
+    width: 100%;
+    transform: translate(0%, -70%);
+    display: flex;
+    justify-content: center;
+    /* height: 50px; */
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+}
+.login_heading_text{
+    font-family: 'Acme-Regular';
+    color: white;
+
+}
+.login_logo{
+    transform: translate(100%, -10%);
+    width: 35%;
+}

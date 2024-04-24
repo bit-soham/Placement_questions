@@ -1,0 +1,28 @@
+{% extends "questions/layout.html" %}
+{% load static %}
+
+{% block body %}<body class="registerBody">
+    <div class="registerBody2"></div>
+    <div class="registerBlock">
+        <span style="color: white; font-size: 50">{{message}}</span>
+        <img class="register_logo" src="{% static 'logo_nobg.png' %}" alt="logo"   >
+        <div class="register_heading_block" ><span class="register_heading_text">Questionnaire</span></div>
+        <form class="register_form" action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            {{form.username}}
+            {{form.email}}
+            {{form.password}}
+            {{form.confirm_password}}
+            <input type="submit" class="register_submit_btn" value="Register">
+        </form>
+        <div class="register_login_block" style="transform: translate(0%, -50%) ">
+            <span class="register_login_text">
+                Already have an Account
+                <a class="register_login_link" href="{% url 'login' %}"> 
+                    Login here
+                </a>
+            </span>
+        </div>
+    </div>
+
+</body>{% endblock %}

@@ -14,16 +14,162 @@
     font-family: 'Ubuntu-Medium';
     src: url('fonts/Ubuntu-Medium.ttf');
 }
-.loginBody{
+@font-face{
+    font-family: 'Ubuntu-Light';
+    src: url('fonts/Ubuntu-Light.ttf');
+}
+@font-face{
+    font-family: 'Ubuntu-Medium-Italic';
+    src: url('fonts/Ubuntu-MediumItalic.ttf');
+}
+.loginBody, .registerBody{
     /* background-color: yellow ;
     /* background-image: url("background.jpeg") ; */
+    /* position: relative; */
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover; 
-    background-image: radial-gradient(circle 5px at 67% 49%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 15% 85%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 26% 60%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 24% 96%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 5px at 26% 73%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 85% 15%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 19% 63%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 12% 68%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 72% 48%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle 10px at 48% 31%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),radial-gradient(circle at center right, rgb(53,53,53) 0%, rgb(53,53,53) 14%,transparent 14%, transparent 86%),linear-gradient(0deg, hsla(284,95%,60%,1),hsla(269,95%,60%,1));
+    /* z-index: 1; */
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    /* background-image: linear-gradient(0deg, hsla(284,95%,60%,1),hsla(269,95%,60%,1)); */
+    background-image:radial-gradient(circle 5px at 67% 49%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 5px at 15% 85%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 5px at 26% 60%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 5px at 24% 96%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 5px at 26% 73%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 10px at 85% 15%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 10px at 19% 63%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 10px at 12% 68%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 10px at 72% 48%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle 10px at 48% 31%, rgb(43,43,43) 0%, rgb(43,43,43) 50%,transparent 50%, transparent 100%),
+    radial-gradient(circle at center right, rgb(53,53,53) 0%, rgb(53,53,53) 14%,transparent 14%, transparent 86%),
+    linear-gradient(0deg, hsla(284,95%,60%,1),hsla(269,95%,60%,1));
+    /* animation: rotatebackground 1s linear infinite ;
+    transform: animation 5s ease-in-out infinite;  */
 }
-.loginBlock{
+.loginBody::before, .registerBody::before {
+    content: '';
+    font-size: 5vw;
+    position: absolute;
+    z-index: -1;
+    top: 20vh;
+    left: 55vw;
+    width: 100px;
+    height: 100px;
+    
+    border-radius: 20px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
+    animation: rotatebackground 10s linear infinite; 
+}
+.loginBody::after, .registerBody::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 70vh;
+    left: 40vw;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    background-repeat: 10; 
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
+    animation: rotatebackground 10s linear infinite; 
+  }
+.loginBody2::before, .registerBody2::before {
+    content: '';
+    font-size: 5vw;
+    position: absolute;
+    z-index: -1;
+    top: 50vh;
+    left: 55vw;
+    width: 100px;
+    height: 100px;
+    
+    border-radius: 20px;
+
+    background-repeat: 10;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
+    animation: rotatebackground 10s linear infinite; 
+}
+.loginBody2::after, .registerBody2::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 20vh;
+    left: 35vw;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    background-repeat: 10; 
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
+    animation: rotatebackground 10s linear infinite; 
+  }
+
+@keyframes rotatebackground{
+    0% {
+        transform: rotate(0deg); 
+      }
+      100% {
+        transform: rotate(360deg); 
+      }
+} 
+/*
+@media screen and (max-width: 1300px){
+    .loginBody::before, .registerBody::before{
+        /* display: none; 
+        top: -2vh;
+        left: 13vw;
+        width: 30vw;
+        height: 30vw;
+    }
+    .loginBody::after, .registerBody::after{
+        /* display: none; 
+        top: 70vh;
+        left: 13vw;
+        width: 30vw;
+        height: 30vw;
+    }
+    .loginBlock::before, .registerBlock::before{
+        /* display: none; 
+        top: 20vh;
+        left: -40vw;
+        width: 30vw;
+        height: 30vw;
+    }
+    .loginBlock::after, .registerBlock::after{
+        /* display: none; 
+        top: -20vh;
+        left: 60vw;
+        width: 30vw;
+        height: 30vw;
+    }
+    
+} */
+
+
+
+
+.loginBlock, .registerBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     width: 45vw;
     max-width: 400px;
     height: 550px;
@@ -32,45 +178,109 @@
     transform: translate(-50%, -50%); 
     /* border: 1px solid red;  */
     position: absolute;
-    background: black;
-    opacity: 0.8;
-    border-radius: 20px
+    /* background: rgb(39, 34, 34);
+    opacity: 0.8; */
+     /* border-radius: 20px; */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
-.login_heading_block{
+.verifyBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 80vw;
+    max-width: 1000px;
+    height: 350px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    /* border: 1px solid red;  */
+    position: absolute;
+    /* background: rgb(39, 34, 34);
+    opacity: 0.8; */
+     /* border-radius: 20px; */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    gap: 5px;
+}
+.verify_text{
+    font-family: 'Acme-Regular';
+    color: lightblue;
+    font-size: 30px;
+    padding: 20px;
+
+}
+.verify_text_end{
+    font-family: 'Acme-Regular';
+    color: rgb(99, 216, 255);
+    font-size: 30px;
+
+}
+.registerBlock{
+    height: 600px !important;
+    width: 50vw !important;
+    max-width: 430px;
+}
+.login_heading_block, .register_heading_block{
     /* border: 1px solid red; */
     width: 100%;
-    transform: translate(0%, -57%);
+    /* transform: translate(0%, -57%); */
     display: flex;
     justify-content: center;
+    transform: translate(0%, -135%);
     /* height: 50px; */
     /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
 }
-.login_heading_text{
+.login_heading_text, .register_heading_text{
     font-family: 'Acme-Regular';
     color: white;
     font-size: 3rem; 
 }
 @media screen and (max-width: 750px){
-    .login_heading_text{
+    .login_heading_text, .register_heading_text{
         font-size: 6.5vw;
         margin-top: 10px;
     }
 }
-.login_logo{
-    transform: translate(70%, 0%);
+.login_logo, .register_logo{
+    transform: translate(0%, -15%);
     width: 45%;
+}
+.verify_logo{
+    width: 180px;
+    transform: translate(0%, -5%);
+    
 }
 .login_form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    transform: translate(0%,20%);
+    /* gap: 20px; */
+    height: 30%;
+    transform: translate(0%,-30%);
 }
+.register_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 45%;
+    align-items: center;
+    /* gap: 20px; */
+    transform: translate(0%,-20%);
 
-.login_username, .login_password{
-    width: 78%;
+}
+.login_username, .register_username, .register_email, .register_confirm_password, .login_password, .register_password{
+    width: 88%;
     height: 30px;
     outline: none;
     border-radius: 5px;
@@ -81,31 +291,70 @@
     opacity: 0.95;
 
 }
-.login_username:focus, .login_password:focus{
+.login_username:focus, .register_username:focus, .register_email:focus, .register_confirm_password:focus, .login_password:focus, .register_password:focus{
     opacity: 1;
 
 }
-.login_username::placeholder, .login_password::placeholder{
+.login_username::placeholder, .register_username::placeholder, .register_email::placeholder, .register_confirm_password::placeholder, .login_password::placeholder, .register_password::placeholder{
     /* padding-left: 5px ; */
     font-size: 18px;
     /* transform: translate(0% , 10%) */
 }
-.login_submit_btn{
+.login_submit_btn, .register_submit_btn{
     width: 120px;
     height: 45px;
     transform: translate(-5%, 30%);
     border-radius: 5px;
-    background-color: rgb(248, 202, 22);
+    background-color: rgb(90, 99, 226);
     font-family: 'Ubuntu-Medium';
     /* text-align: center; */
+    color: rgb(240, 235, 204);
     font-size: 20px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
-.login_submit_btn:hover{
-    background-color: rgb(223, 181, 11);
-    /* border: 5px solid rgb(124, 101, 6); */
+.login_submit_btn:hover, .register_submit_btn:hover{
+    background-color: rgb(89, 147, 224);
+    
 }
-.login_submit_btn:focus{
+.login_submit_btn:focus, .register_submit_btn:focus{
     font-size: 22px;
     color: crimson;
+}
+
+.login_register_block{
+    transform: translate(0%, -150%) !important;
+}
+.register_login_block{
+    transform: translate(0%, -100%) !important;
+}
+.login_register_text, .register_login_text{
+    color: white;
+    font-family: 'Ubuntu-Medium'
+}
+.login_register_link, .register_login_link{
+    color: rgb(198, 242, 255);
+    font-family: 'Ubuntu-Medium-Italic';
+    transition: all 0.3s ease
+}
+.login_register_link:hover, .register_login_link:hover{
+    color: rgb(115, 209, 241);
+}
+.login_register_link:focus, .register_login_link:focus{
+    color: rgb(52, 191, 237);
+}
+
+
+.indexbody{
+    background-image:linear-gradient(200deg, rgba(213, 213, 213, 0.01) 0%, rgba(213, 213, 213, 0.01) 14.286%,rgba(140, 140, 140, 0.01) 14.286%, rgba(140, 140, 140, 0.01) 28.572%,rgba(52, 52, 52, 0.01) 28.572%, rgba(52, 52, 52, 0.01) 42.858%,rgba(38, 38, 38, 0.01) 42.858%, rgba(38, 38, 38, 0.01) 57.144%,rgba(159, 159, 159, 0.01) 57.144%, rgba(159, 159, 159, 0.01) 71.42999999999999%,rgba(71, 71, 71, 0.01) 71.43%, rgba(71, 71, 71, 0.01) 85.71600000000001%,rgba(88, 88, 88, 0.01) 85.716%, rgba(88, 88, 88, 0.01) 100.002%),
+    linear-gradient(337deg, rgba(25, 25, 25, 0.01) 0%, rgba(25, 25, 25, 0.01) 12.5%,rgba(150, 150, 150, 0.01) 12.5%, rgba(150, 150, 150, 0.01) 25%,rgba(84, 84, 84, 0.01) 25%, rgba(84, 84, 84, 0.01) 37.5%,rgba(85, 85, 85, 0.01) 37.5%, rgba(85, 85, 85, 0.01) 50%,rgba(188, 188, 188, 0.01) 50%, rgba(188, 188, 188, 0.01) 62.5%,rgba(80, 80, 80, 0.01) 62.5%, rgba(80, 80, 80, 0.01) 75%,rgba(73, 73, 73, 0.01) 75%, rgba(73, 73, 73, 0.01) 87.5%,rgba(219, 219, 219, 0.01) 87.5%, rgba(219, 219, 219, 0.01) 100%),
+    linear-gradient(203deg, rgba(233, 233, 233, 0.01) 0%, rgba(233, 233, 233, 0.01) 25%,rgba(114, 114, 114, 0.01) 25%, rgba(114, 114, 114, 0.01) 50%,rgba(164, 164, 164, 0.01) 50%, rgba(164, 164, 164, 0.01) 75%,rgba(228, 228, 228, 0.01) 75%, rgba(228, 228, 228, 0.01) 100%),
+    linear-gradient(317deg, rgba(139, 139, 139, 0.02) 0%, rgba(139, 139, 139, 0.02) 16.667%,rgba(44, 44, 44, 0.02) 16.667%, rgba(44, 44, 44, 0.02) 33.334%,rgba(166, 166, 166, 0.02) 33.334%, rgba(166, 166, 166, 0.02) 50.001000000000005%,rgba(2, 2, 2, 0.02) 50.001%, rgba(2, 2, 2, 0.02) 66.668%,rgba(23, 23, 23, 0.02) 66.668%, rgba(23, 23, 23, 0.02) 83.33500000000001%,rgba(21, 21, 21, 0.02) 83.335%, rgba(21, 21, 21, 0.02) 100.002%),
+    linear-gradient(328deg, rgba(3, 3, 3, 0.03) 0%, rgba(3, 3, 3, 0.03) 12.5%,rgba(116, 116, 116, 0.03) 12.5%, rgba(116, 116, 116, 0.03) 25%,rgba(214, 214, 214, 0.03) 25%, rgba(214, 214, 214, 0.03) 37.5%,rgba(217, 217, 217, 0.03) 37.5%, rgba(217, 217, 217, 0.03) 50%,rgba(68, 68, 68, 0.03) 50%, rgba(68, 68, 68, 0.03) 62.5%,rgba(118, 118, 118, 0.03) 62.5%, rgba(118, 118, 118, 0.03) 75%,rgba(200, 200, 200, 0.03) 75%, rgba(200, 200, 200, 0.03) 87.5%,rgba(198, 198, 198, 0.03) 87.5%, rgba(198, 198, 198, 0.03) 100%),
+    linear-gradient(97deg, rgba(195, 195, 195, 0.03) 0%, rgba(195, 195, 195, 0.03) 16.667%,rgba(177, 177, 177, 0.03) 16.667%, rgba(177, 177, 177, 0.03) 33.334%,rgba(170, 170, 170, 0.03) 33.334%, rgba(170, 170, 170, 0.03) 50.001000000000005%,rgba(158, 158, 158, 0.03) 50.001%, rgba(158, 158, 158, 0.03) 66.668%,rgba(121, 121, 121, 0.03) 66.668%, rgba(121, 121, 121, 0.03) 83.33500000000001%,rgba(146, 146, 146, 0.03) 83.335%, rgba(146, 146, 146, 0.03) 100.002%),
+    linear-gradient(268deg, rgba(103, 103, 103, 0.03) 0%, rgba(103, 103, 103, 0.03) 25%,rgba(112, 112, 112, 0.03) 25%, rgba(112, 112, 112, 0.03) 50%,rgba(4, 4, 4, 0.03) 50%, rgba(4, 4, 4, 0.03) 75%,rgba(227, 227, 227, 0.03) 75%, rgba(227, 227, 227, 0.03) 100%),linear-gradient(90deg, hsl(98,0%,0%),hsl(98,0%,0%));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+
 }

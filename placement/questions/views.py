@@ -23,10 +23,10 @@ class LoginForm(forms.Form):
     password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'login_password', 'placeholder': 'Password (min 8 char)', 'autocomplete': 'off'}))
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(strip=True, required=True, min_length=8, widget=forms.TextInput(attrs={ 'autofocus': True, 'class': 'form-control', 'placeholder': 'Username', 'id': 'register_username'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter your email', 'class': 'form-control', 'id': 'register_email'}))                            
-    password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password (min 8 char)', 'class': 'form-control', 'id': 'register_password1'}))
-    confirm_password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm_password', 'class': 'form-control', 'id': 'register_password2'}))
+    username = forms.CharField(strip=True, required=True, min_length=8, widget=forms.TextInput(attrs={ 'autofocus': True, 'class': 'register_username', 'placeholder': 'Username', 'id': 'register_username'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter your email', 'class': 'register_email', 'id': 'register_email'}))                            
+    password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'register_password', 'placeholder': 'Password (min 8 char)', 'id': 'register_password1'}))
+    confirm_password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'register_confirm_password', 'placeholder': 'Confirm_password', 'id': 'register_password2'}))
 
 class NewQuestionsForm(forms.ModelForm):
     class Meta: 
@@ -41,6 +41,7 @@ class NewQuestionsForm(forms.ModelForm):
         }
 @login_required      
 def index(request):
+    # logout(request)
     return render(request, "questions/index.html")
 
 def verify_email(request, uid64, token):
@@ -60,7 +61,13 @@ def verify_email(request, uid64, token):
             return HttpResponse("Email verification link is invalid.")
     except ():
         return HttpResponse("Email verification link is invalid.")
-
+def verify(request, user):
+    if request.method == 'POST':
+        pass
+    else:
+        return render("auctions/verify.html", {
+            'user': user
+        })
 def image(request, image_id):
     question = Questions.objects.get(pk=image_id)
     if question.image:    
@@ -80,12 +87,14 @@ def register(request):
             password = form.cleaned_data["password"]
             email = form.cleaned_data["email"]      
             confirmation = form.cleaned_data["confirm_password"]
+
             # Ensure password matches confirmation
             if password != confirmation:
                 return render(request, "questions/register.html", {
-                    "message": "Passwords must match."
+                    "message": "Passwords must match.",
+                    "form": RegisterForm()
                 })
-            
+            print("hello")
             # Attempt to create new user
             try:
                 user = User.objects.create_user(username, email, password)
@@ -123,27 +132,27 @@ def register(request):
                             }) 
                     except Exception as e:
                         print(f"An error occurred {str(e)}")
-                # return render(request, "questions/verification_page.html", {
-                #     'user': user
-                # })
-                # return HttpResponseRedirect(reverse('verify', user=user))
                 user.save()
+                print("hello")
                 return render(request, "questions/verify.html", {
-                    'email': user.email
+                    'email': user.email,
+                    'username': user.username
                 })
             except IntegrityError:
                 return render(request, "questions/register.html", {
-                    "message": "Username already taken."
+                    "message": "Username already taken.",
+                    "form": RegisterForm()
                 })
 
         else:
+            print("invalid form")
             return render(request, "questions/register.html", {
-                'forms': RegisterForm()
+                'form': RegisterForm()
             })
         # return RegistrationView.as_view()(request)
     else:
         return render(request, "questions/register.html", {
-            'forms': RegisterForm()
+            'form': RegisterForm()
         })
 
 def login_view(request):
@@ -161,11 +170,13 @@ def login_view(request):
                     return HttpResponseRedirect(reverse("index"))   
                 else:
                     return render(request, "questions/login.html", {
-                        "message":"Please verify your email address before logging in."
+                        "message":"Please verify your email address before logging in.",
+                        "form": LoginForm()
                     })
             else:
                 return render(request, "questions/login.html", {
-                    "message": "Invalid username and/or password."
+                    "message": "Invalid username and/or password.",
+                    "form": LoginForm()
                 })
         else:
             return render(request, "questions/login.html", {

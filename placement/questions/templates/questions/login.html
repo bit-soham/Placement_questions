@@ -2,14 +2,23 @@
 {% load static %}
 
 {% block body %}<body class="loginBody">
+    <div class="loginBody2"></div>
     <div class="loginBlock">
         <img class="login_logo" src="{% static 'logo_nobg.png' %}" alt="logo"   >
         <div class="login_heading_block" ><span class="login_heading_text">Questionnaire</span></div>
-        <form class="login_form">
+        <form class="login_form" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             {{form.username}}
             {{form.password}}
             <input type="submit" class="login_submit_btn" value="Login">
         </form>
+        <div class="login_register_block" style="transform: translate(0%, -50%) ">
+            <span class="login_register_text">
+                New User!!!
+                <a class="login_register_link" href="{% url 'register' %}"> 
+                    Register here
+                </a>
+            </span>
+        </div>
     </div>
 </body>{% endblock %}

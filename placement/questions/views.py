@@ -1,6 +1,6 @@
 from django.shortcuts import render # type: ignore
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode # type: ignore
-from .models import User, Questions
+from .models import User, Companies, Tags, Questions
 from django.utils.encoding import force_bytes, force_str # type: ignore
 from django.contrib.auth.tokens import default_token_generator # type: ignore
 from django.contrib.auth import authenticate, login, logout # type: ignore
@@ -39,10 +39,13 @@ class NewQuestionsForm(forms.ModelForm):
             'tags': forms.TextInput(),
             'answer': forms.Textarea(attrs={'rows': 4, 'cols': 40, 'id': 'Qform_answer' }),
         }
+        
 @login_required      
 def index(request):
-    # logout(request)
-    return render(request, "questions/index.html")
+    companies = Companies.objects.all()
+    return render(request, "questions/index.html", {
+        'companies': companies
+    })
 
 def verify_email(request, uid64, token):
     try:
@@ -61,6 +64,9 @@ def verify_email(request, uid64, token):
             return HttpResponse("Email verification link is invalid.")
     except ():
         return HttpResponse("Email verification link is invalid.")
+    
+def company_questions(request, company):
+    pass
 def verify(request, user):
     if request.method == 'POST':
         pass

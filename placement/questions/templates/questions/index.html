@@ -1,5 +1,23 @@
 {%extends "questions/layout.html"%}
-{% block body %}<body class="indexbody">
-    <div style="color: black;"> Hello</div>
-</body>
+{% block content %}
+<div class="main_container">
+    <div class="main_heading">Questionnaire</div>
+    <div class="search_block" style="width: 65%">
+        <form class="search_form">
+            <input type="search" placeholder="Search by topic/question" class="search" >
+            <button type="submit" class="search_button item"></button>
+            <!-- <button class="voice-search item"></button> -->
+        </form> 
+    </div>
+    <div class="company_card_container" >
+        {% for company in companies %}
+        <div class="company_card">
+            <a href="{% url 'company_questions' company.name %}">
+                <div><img src="{{company.logo.url}}" class="index_company_logo"></div>
+                <!-- <div class="company_name_block"><span class="company_name_text">{{company.name}}</span></div> -->
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {%endblock %}

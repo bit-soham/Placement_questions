@@ -50,76 +50,59 @@
     /* animation: rotatebackground 1s linear infinite ;
     transform: animation 5s ease-in-out infinite;  */
 }
-.loginBody::before, .registerBody::before {
+.loginBody::before, .registerBody::before,
+.loginBody::after, .registerBody::after, 
+.loginBody2::before, .registerBody2::before, 
+.loginBody2::after, .registerBody2::after, 
+.loginBody3::before, .registerBody3::before, 
+.loginBody3::after, .registerBody3::after, 
+.loginBody4::before, .registerBody4::before,
+.loginBody4::after, .registerBody4::after{
     content: '';
-    font-size: 5vw;
     position: absolute;
     z-index: -1;
-    top: 20vh;
-    left: 55vw;
     width: 100px;
     height: 100px;
-    
     border-radius: 20px;
-
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
     background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
-    animation: rotatebackground 10s linear infinite; 
+    animation: rotatebackground 25s linear infinite; 
+}
+.loginBody::before, .registerBody::before{
+    top: 10vh;
+    left: 58vw;
 }
 .loginBody::after, .registerBody::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
     top: 70vh;
     left: 40vw;
-    width: 100px;
-    height: 100px;
-    border-radius: 20px;
-    background-repeat: 10; 
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
-    animation: rotatebackground 10s linear infinite; 
   }
 .loginBody2::before, .registerBody2::before {
-    content: '';
-    font-size: 5vw;
-    position: absolute;
-    z-index: -1;
     top: 50vh;
     left: 55vw;
-    width: 100px;
-    height: 100px;
-    
-    border-radius: 20px;
-
-    background-repeat: 10;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
-    animation: rotatebackground 10s linear infinite; 
 }
 .loginBody2::after, .registerBody2::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
     top: 20vh;
     left: 35vw;
-    width: 100px;
-    height: 100px;
-    border-radius: 20px;
-    background-repeat: 10; 
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-image: linear-gradient(0deg, rgb(85, 13, 111),rgb(114, 11, 224));
-    animation: rotatebackground 10s linear infinite; 
-  }
+}
+.loginBody3::before, .registerBody3::before {
+    top: 10vh;
+    left: 5vw;
+}
+.loginBody3::after, .registerBody3::after {
+    top: 45vh;
+    left: 15vw;
+}
+.loginBody4::before, .registerBody4::before {
+    top: 35vh;
+    left: 72vw;
+}
+.loginBody4::after, .registerBody4::after {
+    top: 80vh;
+    left: 85vw;
+}
 
 @keyframes rotatebackground{
     0% {
@@ -280,7 +263,7 @@
 
 }
 .login_username, .register_username, .register_email, .register_confirm_password, .login_password, .register_password{
-    width: 88%;
+    width: 95%;
     height: 30px;
     outline: none;
     border-radius: 5px;
@@ -290,6 +273,9 @@
     transition: all 0.2s ease-in-out;
     opacity: 0.95;
 
+}
+.login_username, .login_password{
+    height: 45px;
 }
 .login_username:focus, .register_username:focus, .register_email:focus, .register_confirm_password:focus, .login_password:focus, .register_password:focus{
     opacity: 1;
@@ -344,7 +330,7 @@
 }
 
 
-.indexbody{
+.mainbody{
     background-image:linear-gradient(200deg, rgba(213, 213, 213, 0.01) 0%, rgba(213, 213, 213, 0.01) 14.286%,rgba(140, 140, 140, 0.01) 14.286%, rgba(140, 140, 140, 0.01) 28.572%,rgba(52, 52, 52, 0.01) 28.572%, rgba(52, 52, 52, 0.01) 42.858%,rgba(38, 38, 38, 0.01) 42.858%, rgba(38, 38, 38, 0.01) 57.144%,rgba(159, 159, 159, 0.01) 57.144%, rgba(159, 159, 159, 0.01) 71.42999999999999%,rgba(71, 71, 71, 0.01) 71.43%, rgba(71, 71, 71, 0.01) 85.71600000000001%,rgba(88, 88, 88, 0.01) 85.716%, rgba(88, 88, 88, 0.01) 100.002%),
     linear-gradient(337deg, rgba(25, 25, 25, 0.01) 0%, rgba(25, 25, 25, 0.01) 12.5%,rgba(150, 150, 150, 0.01) 12.5%, rgba(150, 150, 150, 0.01) 25%,rgba(84, 84, 84, 0.01) 25%, rgba(84, 84, 84, 0.01) 37.5%,rgba(85, 85, 85, 0.01) 37.5%, rgba(85, 85, 85, 0.01) 50%,rgba(188, 188, 188, 0.01) 50%, rgba(188, 188, 188, 0.01) 62.5%,rgba(80, 80, 80, 0.01) 62.5%, rgba(80, 80, 80, 0.01) 75%,rgba(73, 73, 73, 0.01) 75%, rgba(73, 73, 73, 0.01) 87.5%,rgba(219, 219, 219, 0.01) 87.5%, rgba(219, 219, 219, 0.01) 100%),
     linear-gradient(203deg, rgba(233, 233, 233, 0.01) 0%, rgba(233, 233, 233, 0.01) 25%,rgba(114, 114, 114, 0.01) 25%, rgba(114, 114, 114, 0.01) 50%,rgba(164, 164, 164, 0.01) 50%, rgba(164, 164, 164, 0.01) 75%,rgba(228, 228, 228, 0.01) 75%, rgba(228, 228, 228, 0.01) 100%),
@@ -356,5 +342,186 @@
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
+    /* text-align: center; */
+}
+.mainbody::-webkit-scrollbar {
+    height: 6px;
+    width: 7px; 
+  }
 
+.mainbody::-webkit-scrollbar-thumb {
+    background-color: rgba(211, 93, 247, 0.5); /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+    border-left: 3px solid rgb(67, 1, 67); 
+    border-right: 3px solid rgb(67, 1, 67); 
+    border-top: 2px solid rgb(67, 1, 67);
+    border-bottom: 2px solid rgb(67, 1, 67);
+}   
+
+.mainbody::-webkit-scrollbar-track {
+  background-color: rgb(224, 215, 222); /* Color of the scrollbar track */
+} 
+.main_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    /* margin-top: -40px; */
+}
+.main_heading{
+    padding-top: 100px !important;
+    font-size: 10vw;
+    color: white;
+    font-family: 'Acme-Regular'
+}
+@media screen and (max-width: 1000px){
+    .main_heading{
+        font-size: 7rem;
+    }
+
+}
+.search_block{
+    transform: translate(0%, -50%); 
+}
+.search_form {
+	/* border: 4px solid green; */
+	display: grid;
+	grid-template-rows: 40px;
+	grid-template-columns: 50px auto auto 50px;
+	/* width: 300px; */
+	/* margin-left: -80%; */
+	height: 100%;
+	/* margin: auto;  */
+	/* margin-top: 2px; */
+	width:100%;
+    
+	/* justify-self: flex-start; */
+	border-radius: 50px;
+	position: relative;
+	/* box-shadow: 0 3px 9px , inset 0 0 9px white; */
+	opacity: 0.9;
+	transition: all 1s ease;
+	background-color: transparent ;
+	/* margin-right: 10px; */
+}
+
+.search {
+	
+	border-radius: 50px;
+	border-left: 3px solid transparent;
+	border-right: 3px solid transparent;
+	font-size: 20px;
+	position: relative;
+	grid-area: 1/ 1/ 2/ 5;
+	border-top: transparent;
+	border-bottom: transparent;
+	transition: all 1s ease;
+	/* border: 1px solid transparent; */
+	/* border-left: 2px solid hsl(0, 4.8%, 28.4%); */
+	/* border-right: 2px solid hsl(0, 4.8%, 28.4%); */
+	width: 100%;
+	height: 120%;
+	padding-inline-start: 20px !important;
+	padding-inline-end: 50px !important;
+}
+.search::placeholder {
+	/* padding-left: 35px; */
+	font-style: italic;
+	font-size: 20px;
+	/* padding: 0px 35px 0px; */
+	
+}
+.search_button{
+	text-indent: -999px;
+	position: relative;
+	/* z-index: 5; */
+	/* overflow: visible; */
+	/*  */
+	width: 26px;
+	height: 26px;
+	grid-area: 1/4/2 /5;
+    transform: translate(30%, 10%);
+	align-self: center;
+	/* margin-left: -90%; */
+	border: 1px solid transparent;
+	/* border-radius: inherit; */
+	background: transparent url(search_icon.svg) no-repeat center;
+	cursor: pointer;
+	/* line-height: 2.1rem; */
+}
+
+
+
+.search_form:hover{
+	opacity: 1;
+	/* animation: bordertransition 2s linear  */
+	/* box-shadow: 0 0px 0px black, inset 0 0 0px white; */
+}
+.search:hover{
+	opacity: 1;
+	/* background:linear-gradient(white, white) padding-box,
+	linear-gradient(darkblue, darkorchid) border-box; */
+	/* background: linear-gradient(white, white) padding-box */
+}
+.search_button:hover{
+	opacity: 1;
+}
+
+.search:focus{
+	opacity: 1 !important;
+	outline: none;
+	outline-width: 0;
+	border-left: 3px solid rgb(255, 0, 255);
+	border-right: 3px solid rgb(255, 0, 255);
+	border-top: 2px solid rgb(255, 0, 255);
+	border-bottom: 2px solid rgb(255, 0, 255);
+	box-shadow: 0 3px 9px black, inset 0 0 9px white;
+	
+	/* box-shadow: 0 3px 9px rgb(105, 6, 95), inset 0 0 0px white ; */
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	display: none;
+}
+
+.company_card_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    /* margin-top: -40px; */
+}
+
+.company_card{
+    /* border: 1px solid red; */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    display: flex;
+}
+.company_name_block{
+
+}
+.company_name_text{
+    /* color: white; */
+    /* border: 1px solid red; */
+    /* font-size: 20px; */
+}
+.index_company_logo{
+    width: 30%;
+    height: 30%;
+    border: 1px solid red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
 }

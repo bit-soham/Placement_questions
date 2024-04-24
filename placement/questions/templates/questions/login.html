@@ -1,24 +1,36 @@
-{% extends "questions/layout.html" %}
 {% load static %}
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Questionnaire-Login</title>
 
-{% block body %}<body class="loginBody">
-    <div class="loginBody2"></div>
-    <div class="loginBlock">
-        <img class="login_logo" src="{% static 'logo_nobg.png' %}" alt="logo"   >
-        <div class="login_heading_block" ><span class="login_heading_text">Questionnaire</span></div>
-        <form class="login_form" action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            {{form.username}}
-            {{form.password}}
-            <input type="submit" class="login_submit_btn" value="Login">
-        </form>
-        <div class="login_register_block" style="transform: translate(0%, -50%) ">
-            <span class="login_register_text">
-                New User!!!
-                <a class="login_register_link" href="{% url 'register' %}"> 
-                    Register here
-                </a>
-            </span>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    
+    <body class="loginBody">
+        <div class="loginBody2"></div>
+        <div class="loginBody3"></div>
+        <div class="loginBody4"></div>
+        <div class="loginBlock">
+            <img class="login_logo" src="{% static 'logo_nobg.png' %}" alt="logo"   >
+            <div class="login_heading_block" ><span class="login_heading_text">Questionnaire</span></div>
+            <form class="login_form" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {{form.username}}
+                {{form.password}}
+                <input type="submit" class="login_submit_btn" value="Login">
+            </form>
+            <div class="login_register_block" style="transform: translate(0%, -50%) ">
+                <span class="login_register_text">
+                    New User!!!
+                    <a class="login_register_link" href="{% url 'register' %}"> 
+                        Register here
+                    </a>
+                </span>
+            </div>
         </div>
-    </div>
-</body>{% endblock %}
+    </body>
+</html>

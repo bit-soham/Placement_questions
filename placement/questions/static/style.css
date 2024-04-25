@@ -19,9 +19,16 @@
     src: url('fonts/Ubuntu-Light.ttf');
 }
 @font-face{
+    font-family: 'Ubuntu-Large';
+    src: url('fonts/Ubuntu-Bold.ttf');
+}
+@font-face{
     font-family: 'Ubuntu-Medium-Italic';
     src: url('fonts/Ubuntu-MediumItalic.ttf');
 }
+
+
+
 .loginBody, .registerBody{
     /* background-color: yellow ;
     /* background-image: url("background.jpeg") ; */
@@ -331,13 +338,14 @@
 
 
 .mainbody{
-    background-image:linear-gradient(200deg, rgba(213, 213, 213, 0.01) 0%, rgba(213, 213, 213, 0.01) 14.286%,rgba(140, 140, 140, 0.01) 14.286%, rgba(140, 140, 140, 0.01) 28.572%,rgba(52, 52, 52, 0.01) 28.572%, rgba(52, 52, 52, 0.01) 42.858%,rgba(38, 38, 38, 0.01) 42.858%, rgba(38, 38, 38, 0.01) 57.144%,rgba(159, 159, 159, 0.01) 57.144%, rgba(159, 159, 159, 0.01) 71.42999999999999%,rgba(71, 71, 71, 0.01) 71.43%, rgba(71, 71, 71, 0.01) 85.71600000000001%,rgba(88, 88, 88, 0.01) 85.716%, rgba(88, 88, 88, 0.01) 100.002%),
+    background-image:
+    linear-gradient(200deg, rgba(213, 213, 213, 0.01) 0%, rgba(213, 213, 213, 0.01) 14.286%,rgba(140, 140, 140, 0.01) 14.286%, rgba(140, 140, 140, 0.01) 28.572%,rgba(52, 52, 52, 0.01) 28.572%, rgba(52, 52, 52, 0.01) 42.858%,rgba(38, 38, 38, 0.01) 42.858%, rgba(38, 38, 38, 0.01) 57.144%,rgba(159, 159, 159, 0.01) 57.144%, rgba(159, 159, 159, 0.01) 71.42999999999999%,rgba(71, 71, 71, 0.01) 71.43%, rgba(71, 71, 71, 0.01) 85.71600000000001%,rgba(88, 88, 88, 0.01) 85.716%, rgba(88, 88, 88, 0.01) 100.002%),
     linear-gradient(337deg, rgba(25, 25, 25, 0.01) 0%, rgba(25, 25, 25, 0.01) 12.5%,rgba(150, 150, 150, 0.01) 12.5%, rgba(150, 150, 150, 0.01) 25%,rgba(84, 84, 84, 0.01) 25%, rgba(84, 84, 84, 0.01) 37.5%,rgba(85, 85, 85, 0.01) 37.5%, rgba(85, 85, 85, 0.01) 50%,rgba(188, 188, 188, 0.01) 50%, rgba(188, 188, 188, 0.01) 62.5%,rgba(80, 80, 80, 0.01) 62.5%, rgba(80, 80, 80, 0.01) 75%,rgba(73, 73, 73, 0.01) 75%, rgba(73, 73, 73, 0.01) 87.5%,rgba(219, 219, 219, 0.01) 87.5%, rgba(219, 219, 219, 0.01) 100%),
     linear-gradient(203deg, rgba(233, 233, 233, 0.01) 0%, rgba(233, 233, 233, 0.01) 25%,rgba(114, 114, 114, 0.01) 25%, rgba(114, 114, 114, 0.01) 50%,rgba(164, 164, 164, 0.01) 50%, rgba(164, 164, 164, 0.01) 75%,rgba(228, 228, 228, 0.01) 75%, rgba(228, 228, 228, 0.01) 100%),
     linear-gradient(317deg, rgba(139, 139, 139, 0.02) 0%, rgba(139, 139, 139, 0.02) 16.667%,rgba(44, 44, 44, 0.02) 16.667%, rgba(44, 44, 44, 0.02) 33.334%,rgba(166, 166, 166, 0.02) 33.334%, rgba(166, 166, 166, 0.02) 50.001000000000005%,rgba(2, 2, 2, 0.02) 50.001%, rgba(2, 2, 2, 0.02) 66.668%,rgba(23, 23, 23, 0.02) 66.668%, rgba(23, 23, 23, 0.02) 83.33500000000001%,rgba(21, 21, 21, 0.02) 83.335%, rgba(21, 21, 21, 0.02) 100.002%),
     linear-gradient(328deg, rgba(3, 3, 3, 0.03) 0%, rgba(3, 3, 3, 0.03) 12.5%,rgba(116, 116, 116, 0.03) 12.5%, rgba(116, 116, 116, 0.03) 25%,rgba(214, 214, 214, 0.03) 25%, rgba(214, 214, 214, 0.03) 37.5%,rgba(217, 217, 217, 0.03) 37.5%, rgba(217, 217, 217, 0.03) 50%,rgba(68, 68, 68, 0.03) 50%, rgba(68, 68, 68, 0.03) 62.5%,rgba(118, 118, 118, 0.03) 62.5%, rgba(118, 118, 118, 0.03) 75%,rgba(200, 200, 200, 0.03) 75%, rgba(200, 200, 200, 0.03) 87.5%,rgba(198, 198, 198, 0.03) 87.5%, rgba(198, 198, 198, 0.03) 100%),
     linear-gradient(97deg, rgba(195, 195, 195, 0.03) 0%, rgba(195, 195, 195, 0.03) 16.667%,rgba(177, 177, 177, 0.03) 16.667%, rgba(177, 177, 177, 0.03) 33.334%,rgba(170, 170, 170, 0.03) 33.334%, rgba(170, 170, 170, 0.03) 50.001000000000005%,rgba(158, 158, 158, 0.03) 50.001%, rgba(158, 158, 158, 0.03) 66.668%,rgba(121, 121, 121, 0.03) 66.668%, rgba(121, 121, 121, 0.03) 83.33500000000001%,rgba(146, 146, 146, 0.03) 83.335%, rgba(146, 146, 146, 0.03) 100.002%),
-    linear-gradient(268deg, rgba(103, 103, 103, 0.03) 0%, rgba(103, 103, 103, 0.03) 25%,rgba(112, 112, 112, 0.03) 25%, rgba(112, 112, 112, 0.03) 50%,rgba(4, 4, 4, 0.03) 50%, rgba(4, 4, 4, 0.03) 75%,rgba(227, 227, 227, 0.03) 75%, rgba(227, 227, 227, 0.03) 100%),linear-gradient(90deg, hsl(98,0%,0%),hsl(98,0%,0%));
+    linear-gradient(268deg, rgba(103, 103, 103, 0.03) 0%, rgba(103, 103, 103, 0.03) 25%,rgba(112, 112, 112, 0.03) 25%, rgba(112, 112, 112, 0.003) 50%,rgba(4, 4, 4, 0.03) 50%, rgba(4, 4, 4, 0.03) 75%,rgba(227, 227, 227, 0.003) 75%, rgba(227, 227, 227, 0.03) 100%),linear-gradient(90deg, hsl(98,0%,0%),hsl(98,0%,0%));
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -346,20 +354,21 @@
 }
 .mainbody::-webkit-scrollbar {
     height: 6px;
-    width: 7px; 
+    width: 10px; 
   }
 
 .mainbody::-webkit-scrollbar-thumb {
-    background-color: rgba(211, 93, 247, 0.5); /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-    border-left: 3px solid rgb(67, 1, 67); 
-    border-right: 3px solid rgb(67, 1, 67); 
-    border-top: 2px solid rgb(67, 1, 67);
-    border-bottom: 2px solid rgb(67, 1, 67);
+    background: repeating-linear-gradient(135deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),
+    repeating-linear-gradient(22.5deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),
+    linear-gradient(90deg, hsl(194,74%,56%),hsl(266,74%,56%),hsl(338,74%,56%),hsl(50,74%,56%),hsl(122,74%,56%)); 
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
 }   
 
 .mainbody::-webkit-scrollbar-track {
-  background-color: rgb(224, 215, 222); /* Color of the scrollbar track */
+  background-color: black;
+
 } 
 .main_container{
     display: flex;
@@ -367,14 +376,81 @@
     justify-content: center;
     align-items: center;
     gap: 40px;
-    /* margin-top: -40px; */
+    margin-top: -40px;
 }
 .main_heading{
     padding-top: 100px !important;
     font-size: 10vw;
-    color: white;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(
+		45deg, 
+		hsla(51, 100%, 40%, 0.8) 5%,
+		hsla(51, 90%, 45%, 0.7) 10%,
+		hsla(51, 80%, 70%, 0.8) 30%,
+		hsla(51, 100%, 55%, 0.7) 50%,
+		hsla(51, 80%, 70%, 0.8) 70%,
+		hsla(51, 90%, 45%, 0.7) 90%,
+		hsla(51, 100%, 40%, 0.8) 95%
+	);
     font-family: 'Acme-Regular'
 }
+.nav-bar {
+	position: relative;
+	/* if position is not set to relative the before elements postion wlill take it's position relative to the body */
+	/* margin: 1% 100px; */
+	/* border-radius: 50px; */
+	opacity: 1;
+	/* height: 55px; */
+	z-index: 1;
+	gap: 19px;
+	align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -7px;
+    height: 65px;
+    opacity: 0.6;
+    /* padding-top: 5px; */
+}
+.nav-links a{
+    color: white !important;
+    text-decoration: none;
+    font-size:18px;
+    font-family: "Ubuntu-Medium";
+    transition: all 0.2s ease-in;
+}
+.nav-links a:hover{
+    color: lightblue !important;
+    text-decoration: underline;
+    font-size:18px;
+    /* font-family: "Ubuntu-Medium-Italic"; */
+}
+.nav-logo-block{
+    width: 120px;
+    padding-left: 20px;
+    /* height: 109px; */
+}
+.nav-logo{
+    width: 100%;
+    height: 100%;
+
+}
+.nav-links{
+    width: fit-content;
+    display: flex;
+    gap: 4vw;
+    justify-content: space-between;
+    padding-right: 5vw;
+}
+.nav-links div{
+    width: fit-content;
+}
+
+/* .nav-bar */
 @media screen and (max-width: 1000px){
     .main_heading{
         font-size: 7rem;
@@ -487,14 +563,26 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
 	display: none;
 }
-
+.index_text{
+    color: white;
+    font-family: 'Acme-Regular';
+    font-size: 40px;
+}
+.index_text_block{
+    transform: translate(0, -10%)
+}
 .company_card_container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 40px;
+    width: 90vw;
+    /* border: 1px solid red; */
     /* margin-top: -40px; */
+    /* flex: 1 1; */
+    flex-shrink: 1;
+    flex-grow: 1;
 }
 
 .company_card{
@@ -505,23 +593,174 @@ input[type="search"]::-webkit-search-results-decoration {
     border-radius: 20px;
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    max-width: 200px;
+    min-width: 100px;
     display: flex;
+    align-items: center;
+    transition: background-color 0.5s ease-in-out;
+}
+.company_card:hover{
+    background-color:  rgba(255, 255, 255, 0.2);
+}
+.company_card_link{
+    text-decoration: none;
+}
+.company_logo_block{
+    width: 25%;
+    padding: 10px;
 }
 .company_name_block{
-
+    width: 60%;
+    padding-left: 5px;
+    /* text-align: center; */
 }
 .company_name_text{
-    /* color: white; */
+    color: white;
     /* border: 1px solid red; */
-    /* font-size: 20px; */
+    font-size: 20px;
+    font-family: 'Platypi';
+    color: rgb(174, 205, 236)
+    
 }
 .index_company_logo{
-    width: 30%;
-    height: 30%;
-    border: 1px solid red;
-    margin-top: 10px;
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+    /* margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 10px; */
     border-radius: 20px;
 }
+.add_company_block{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: 50vw;
+    max-width: 530px;
+    height: 730px;
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+.add_company_heading span{
+    background: repeating-linear-gradient(135deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),
+    repeating-linear-gradient(22.5deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),
+    linear-gradient(90deg, hsl(194,74%,56%),hsl(266,74%,56%),hsl(338,74%,56%),hsl(50,74%,56%),hsl(122,74%,56%)); 
+    
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    
+    font-family: 'Ubuntu-Large';
+    font-size: 6vw;
+    
+    
+}
+
+@media (min-width: 1000px) {
+    .add_company_heading span {
+      font-size: 4rem; 
+    }
+  }
+.add_company_block{
+    
+}
+.Cform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 20px;
+    width: 100%;
+    height: 80%;
+    
+    /* transform: translate(0, 5%); */
+
+}
+.Cform div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 10px;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.Cform label{
+    color: white;
+    font-family: 'Ubuntu-Light';
+    
+} 
+.Cform input{
+    width: 90%;
+    height: 30px;
+    border-radius: 4px;
+    padding: 3px;
+    padding-top: 5px;
+    font-size: 1.2rem;
+    font-family: 'Acme-Regular';
+    padding-inline-start: 10px;
+    outline: none;
+    transform: translate(0%, -20%)
+
+}
+
+
+.Cform_name::placeholder{
+    font-size: 1.2rem;
+    font-family: 'Acme-Regular';
+}
+.Cform_logo{
+    
+}
+.Cform_description{
+
+}
+.Cform_website{
+
+}
+.Cform_email{
+
+}
+.add_company_submit_btn{
+    align-self: center;
+    width: 40%;
+    height: 50px !important;
+    border-radius: 10px;
+    /* background: rgb(172, 22, 209); */
+    color: lightblue;
+    font-family: 'Acme-Regular';
+    font-size: 1.4rem;
+    cursor: pointer;
+    transform: translate(0%, 40%);
+    transition: all 0.5s ease;
+    border: 2px solid transparent;
+    background: repeating-linear-gradient(135deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),
+    repeating-linear-gradient(22.5deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),
+    linear-gradient(90deg, hsl(194,74%,56%),hsl(266,74%,56%),hsl(338,74%,56%),hsl(50,74%,56%),hsl(122,74%,56%)); 
+}
+.add_company_submit_btn:hover{
+    font-size: 1.5rem;
+    color: rgb(99, 197, 230);
+    border: 2px solid rgb(99, 197, 230);
+}
+.add_company_submit_btn:focus{
+    transform: scale(1.1);
+    font-size: 1.5rem;
+    color: rgb(99, 197, 230);
+    border: 2px solid rgb(99, 197, 230);
+}
+
+

@@ -13,6 +13,6 @@ urlpatterns = [
     path("accounts/verify", views.verify, name="verify"),
     path("new_question/", views.new_question, name="new_question"),
     path("verify_email/<str:uid64>/<str:token>/", views.verify_email, name="verify_email"),
-    
+    path("add_company", views.add_company, name="add_company"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

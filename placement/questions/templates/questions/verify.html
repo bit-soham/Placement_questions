@@ -1,14 +1,25 @@
-{% extends "questions/layout.html" %}
 {% load static %}
-{% block body %}
-<body class="loginBody">
-    <div class="loginBody2"></div>
-    <div class="verifyBlock">
-        <div class="login_heading_text">Hello, {{username}}</div>
-        <div class="verify_text">A verification link has been sent to <u>{{email}}</u></div>
-        <div class="verify_text_end">Please <u>verify</u> it to continue</div>
-        <img class="verify_logo" src="{% static 'logo_nobg.png' %}" alt="logo"   >
-    </div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Verify-email</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
 
-</body>
-{% endblock %}
+    <body class="loginBody">
+        <div class="loginBody2"></div>
+        <div class="loginBody3"></div>
+        <div class="loginBody4"></div>
+        <div class="verifyBlock">
+            <div class="login_heading_text">Hello, {{username}}</div>
+            <div class="verify_text">A verification link has been sent to <u>{{email}}</u></div>
+            <div class="verify_text_end">Please <u>verify</u> it to continue</div>
+            <img class="verify_logo" src="{% static 'logo_nobg.png' %}" alt="logo"   >
+        </div>
+        
+    </body>
+</html>

@@ -28,6 +28,13 @@ class RegisterForm(forms.Form):
     password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'register_password', 'placeholder': 'Password (min 8 char)', 'id': 'register_password1'}))
     confirm_password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={'class': 'register_confirm_password', 'placeholder': 'Confirm_password', 'id': 'register_password2'}))
 
+class NewCompanyForm(forms.Form):
+    name = forms.CharField(strip=True, required=True, min_length=2, widget=forms.TextInput(attrs={'placeholder': 'Enter company name', 'class': 'Cform_name', 'autofocus': 'True', 'autocomplete': 'off'}))
+    logo = forms.ImageField(widget=forms.FileInput(attrs={'class': 'Cform_logo'}))
+    website = forms.URLField(widget=forms.TextInput(attrs={'placeholder': 'Enter company website', 'class': 'Cform_website', 'autocomplete': 'off'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter company email', 'class': 'Cform_email', 'autocomplete': 'off'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'Cform_description'}))
+    
 class NewQuestionsForm(forms.ModelForm):
     class Meta: 
         model = Questions
@@ -40,6 +47,8 @@ class NewQuestionsForm(forms.ModelForm):
             'answer': forms.Textarea(attrs={'rows': 4, 'cols': 40, 'id': 'Qform_answer' }),
         }
         
+        
+    
 @login_required      
 def index(request):
     companies = Companies.objects.all()
@@ -67,6 +76,17 @@ def verify_email(request, uid64, token):
     
 def company_questions(request, company):
     pass
+
+def add_company(request):
+    if request.method == 'POST':
+        form = NewCompanyForm(request.POST, request.FILES)
+    companies = Companies.objects.all()
+    return render(request, "questions/add_company.html", {
+        'companies': companies,
+        'form': NewCompanyForm()
+    })
+
+
 def verify(request, user):
     if request.method == 'POST':
         pass
@@ -139,7 +159,7 @@ def register(request):
                     except Exception as e:
                         print(f"An error occurred {str(e)}")
                 user.save()
-                print("hello")
+                print('helljdofij')
                 return render(request, "questions/verify.html", {
                     'email': user.email,
                     'username': user.username

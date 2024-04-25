@@ -1,0 +1,30 @@
+{% extends "questions\layout.html" %}
+{% block content %}
+    <div class="add_company_block">
+        <div class="add_company_heading"><span>Add Company</span></div>
+        <form action="{% url 'add_company' %}" method="POST" enctype="multipart/form-data" class="Cform">
+            {% csrf_token %}
+            <div>
+                <label>Company Name</label>
+                {{form.name}}
+            </div>
+            <div>
+                <label>Company Logo</label>
+                {{form.logo}}
+            </div>
+            <div>
+                <label>Company email</label>
+                {{form.email}}
+            </div>
+            <div>
+                <label>Company website</label>
+                {{form.website}}
+            </div>
+            <div>
+                <label>Company description</label>
+                {{form.description}}
+            </div>
+            <button type="submit"  class="add_company_submit_btn">Add Company</button>
+        </form>
+    </div>
+{% endblock %}

@@ -12,7 +12,7 @@ class User(AbstractUser):
 
 class Companies(models.Model):
     name = models.CharField(max_length=100, primary_key=True, unique=True)
-    logo = models.ImageField(upload_to="company_logos/", default="company_logos/default_image.png")
+    logo = models.ImageField(upload_to="company_logo/", default="company_logos/default_image.png")
     description = models.TextField(default=None)
     website = models.TextField(default=None, blank=True)
     email = models.EmailField()

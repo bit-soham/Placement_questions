@@ -1,3 +1,6 @@
-from django.contrib import admin
+# from django.contrib import admin #type: ignore
 
-# Register your models here.
+# from .models import Companies
+
+# admin.site.register(Companies, fields=('logo', 'image'), readonly_fields=('logo_thumbnail',))
+# # Register your models here.

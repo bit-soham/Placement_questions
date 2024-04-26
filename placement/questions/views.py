@@ -11,10 +11,12 @@ from django.conf import settings # type: ignore
 from django.core.mail import send_mail # type:ignore
 from django.contrib.sites.shortcuts import get_current_site # type: ignore
 import socket
-from django.contrib.auth.decorators import permission_required, login_required # type: ignore
+from django.contrib.auth.decorators import permission_required, login_required# type: ignore
+from django.contrib.admin.decorators import display #type: ignore
 from django.template.loader import render_to_string # type: ignore
 from django.db import IntegrityError # type: ignore
-
+from django.core.files.uploadedfile import SimpleUploadedFile #type: ignore
+import json
 # Create your views here.
 # SECRET_KEY = 'c544efcf10d5ecf720c9318e460cb3c2270a9637f34641142df4b437d43857df'
 
@@ -30,7 +32,7 @@ class RegisterForm(forms.Form):
 
 class NewCompanyForm(forms.Form):
     name = forms.CharField(strip=True, required=True, min_length=2, widget=forms.TextInput(attrs={'placeholder': 'Enter company name', 'class': 'Cform_name', 'autofocus': 'True', 'autocomplete': 'off'}))
-    logo = forms.ImageField(widget=forms.FileInput(attrs={'class': 'Cform_logo'}))
+    logo = forms.ImageField(widget=forms.FileInput(attrs={'class': 'Cform_logo', 'onchange': 'displayFileName()'}))
     website = forms.URLField(widget=forms.TextInput(attrs={'placeholder': 'Enter company website', 'class': 'Cform_website', 'autocomplete': 'off'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter company email', 'class': 'Cform_email', 'autocomplete': 'off'}))
     description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'Cform_description'}))
@@ -80,9 +82,24 @@ def company_questions(request, company):
 def add_company(request):
     if request.method == 'POST':
         form = NewCompanyForm(request.POST, request.FILES)
-    companies = Companies.objects.all()
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            name = name.title()
+            logo = form.cleaned_data['logo']
+            new_file_name = name + "." + logo.name.split('.')[-1]
+            new_logo = SimpleUploadedFile(new_file_name, logo.read())
+            
+            
+            website = form.cleaned_data['website']
+            email = form.cleaned_data['email']
+            description = form.cleaned_data['description']
+            Companies.objects.create(name=name, logo=new_logo, website=website, email=email, description=description)
+            return HttpResponseRedirect(reverse('index'), {'message': "Company added successfully"})
+        
+    company_names = list(Companies.objects.values_list('name', flat=True))
+    
     return render(request, "questions/add_company.html", {
-        'companies': companies,
+        'companies': json.dumps(company_names),
         'form': NewCompanyForm()
     })
 
@@ -215,7 +232,7 @@ def login_view(request):
         }) 
          
 @login_required
-def new_question(request):
+def add_question(request):
     if request.method == 'POST':
         print("went to post")
         form = NewQuestionsForm(request.POST,request.FILES)
@@ -254,7 +271,7 @@ def new_question(request):
                         print(f"Excepted formatter: {expected_format}")
         return HttpResponseRedirect(reverse('index'))
     else:
-        return render(request, "questions/new_question.html", {
+        return render(request, "questions/add_question.html", {
             "forms": NewQuestionsForm()
         })
 def  logout_view(request):

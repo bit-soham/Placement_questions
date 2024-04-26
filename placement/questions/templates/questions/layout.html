@@ -7,6 +7,8 @@
     <title>Questionnaire</title>
     <link href="{% static 'style.css' %}" rel="stylesheet">
     <script src="{% static 'scripts.js' %}"></script>
+    
+    
 </head>
 <body class="mainbody">
     <div class="nav-bar">
@@ -21,7 +23,7 @@
                 <a href="{% url 'add_company' %}"><span>Add Company</span></a>
             </div>
             <div class="nav-add-question">
-                <a href="{% url 'login' %}"><span>Add Question</span></a>
+                <a href="{% url 'add_question' %}"><span>Add Question</span></a>
             </div>
             <div class="nav-about-us">
                 <a href="{% url 'login' %}"><span>About Us</span></a>

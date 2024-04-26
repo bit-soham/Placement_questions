@@ -1,30 +1,96 @@
 {% extends "questions\layout.html" %}
 {% block content %}
+    <script>
+        
+
+        function displayFileName() {
+            var input = document.querySelector(".Cform_logo");
+            var fileNameDisplay = document.getElementById('file-label');
+            <!-- console.log(input.files[0].name); -->
+            if (input.files && input.files[0]){
+                //var reader = new FileReader();
+                //reader.onload = function(e){
+                //    document.querySelector(".custom-file-input label").textContent = e.target.result;
+                //}
+                //reader.readAsDataURL(input.files[0]);
+
+                fileNameDisplay.textContent = input.files[0].name;
+                fileNameDisplay.style.opacity = 1;
+            }
+            else{
+                fileNameDisplay.textContent = "Click here to Choose File";
+                fileNameDisplay.style.opacity = 0.5;
+            }
+            // Add event listener for when a file is selected
+        }
+
+          
+    </script>
+    <script>        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            function CheckName() {
+                var name = document.querySelector(".Cform_name").value;
+                var companies = "{{companies}}";
+                
+                var sanitizedJsonData = companies.replace(/&quot;/g, '"');
+
+                companies= JSON.parse(sanitizedJsonData);
+
+                for (var i = 0; i < companies.length; i++) {
+                    if (companies[i].toLowerCase() == name.toLowerCase()) {
+                        document.querySelector(".Cform_name").style.border = "1px solid red";
+                        document.querySelector(".Cform_name_warning").style.display = "block";
+                        document.querySelector(".add_company_submit_btn").disabled = true;
+                        document.querySelector(".add_company_submit_btn").style.opacity = 0.2;
+                        break;
+                    }
+                    else{
+                        document.querySelector(".Cform_name").style.border = "1px solid transparent";
+                        document.querySelector(".Cform_name_warning").style.display = "none";
+                        document.querySelector(".add_company_submit_btn").disabled = false;
+                        document.querySelector(".add_company_submit_btn").style.opacity = 1;
+                    }
+                }
+            }
+    
+            // Attach the event listener for keyup event
+            document.querySelector(".Cform_name").addEventListener("keyup", CheckName);
+        });
+    </script>
     <div class="add_company_block">
-        <div class="add_company_heading"><span>Add Company</span></div>
+        <div class="add_company_heading"><span>New Company</span></div>
         <form action="{% url 'add_company' %}" method="POST" enctype="multipart/form-data" class="Cform">
             {% csrf_token %}
             <div>
                 <label>Company Name</label>
+                <!-- <input class="Cform_name" id ="Cform_name" type="text" name="name" placeholder="Company Name" > -->
                 {{form.name}}
+                <span class="Cform_name_warning"><span style="font-size: 1.2em">&#9888</span> &nbsp  Company already registered</span>
             </div>
             <div>
                 <label>Company Logo</label>
-                {{form.logo}}
+                <div  class="Cform_logo_container">
+                    <label id="file-label" >Click here to Choose File</label>
+                    <div class="custom-file-input">
+                        {{form.logo}}
+                    </div>
+                    <!-- <div class=""></div> -->
+                </div>
             </div>
             <div>
                 <label>Company email</label>
                 {{form.email}}
-            </div>
-            <div>
-                <label>Company website</label>
-                {{form.website}}
-            </div>
-            <div>
-                <label>Company description</label>
+                <div>
+                    <label>Company website</label>
+                    {{form.website}}
+                </div>
+                <div>
+                    <label>Company description</label>
                 {{form.description}}
             </div>
-            <button type="submit"  class="add_company_submit_btn">Add Company</button>
+            <button type="submit" class="add_company_submit_btn">Add Company</button>
         </form>
     </div>
+    <div style="position: absolute;height: 1000px; border: 1px solid transparent"></div>
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends "questions/layout.html" %}
 {% block search %}
 <div class="search_block" style="width: 50vw; max-width: 600px; margin-top: 29px">
-    <form class="search_form" style="margin-right: 1vw" action="{% url 'search' %}">
-        <input type="search" placeholder="Search by topic/question" class="search" style="height: 115% !important" >
+    <form class="search_form" style="margin-right: 1vw" action="{% url 'search_results' %}" method="POST">
+        {% csrf_token %}
+        <input type="search" autocomplete="off" name="search" placeholder="Search by topic/question" class="search" style="height: 115% !important" >
         <button type="submit" class="search_button item"></button>
     </form> 
 </div>
@@ -16,7 +17,9 @@
                 {% for company in question.companies.all %}
                 <a style="margin-left: 21px" href="{% url 'company_questions' company.name %}" class="Q_company_link">
                     <div class="Q_company_container">
+                        {% if company.logo %}
                         <div class="Q_company_logo_block"><img class="Q_company_logo" src="{{company.logo.url}}"></div>
+                        {% endif %}
                         <div class="Q_company_name_block"><span class="Q_company_name" >{{company.name}}</span></div>
                     </div>
                 </a>
@@ -31,13 +34,17 @@
             <div  class="Q_question_tags_block">
                 <div class="Q_question_tags_container">
                 {% for tag in question.tags.all %}
+                <a class="CQ_question_tag_link" href="{% url 'tag_questions' tag.id %}">
                     <div class="Q_question_tag">#{{tag.name}}</div>
+                </a>
                 {% endfor %}
                 </div>
             </div>
+            {% if question.image %}
             <div class="Q_question_image_container" >
                 <img class="Q_question_image" src="{{question.image.url}}" height="100px">
             </div>
+            {% endif %}
         </div>
         <div class="Q_answer_block">
             <div class="Q_answer_container">

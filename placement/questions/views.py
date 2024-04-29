@@ -1,3 +1,4 @@
+import difflib
 from django.shortcuts import render # type: ignore
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode # type: ignore
 from .models import User, Companies, Tags, Questions
@@ -76,6 +77,17 @@ def company_questions(request, company):
     
     return render(request, "questions/company_questions.html", {
         'company': company,
+        'count': len(questions),
+        'questions': questions
+    })
+    
+def tag_questions(request, tag):
+    
+    questions = Questions.objects.filter(tags=tag)
+    tag = Tags.objects.get(id=tag).name
+    # print(tag)
+    return render(request, "questions/company_questions.html", {
+        'tag': tag,
         'count': len(questions),
         'questions': questions
     })
@@ -319,12 +331,36 @@ def view_question(request, question_id):
         "similiar_questions": similiar_questions
     })
     
-def search_results(request, search):
-    
-    return render(request, "questions/search_results.html", {
-        "search_value": search,
-        # "questions": questions,
-    })
+def similarity(a, b):
+    return difflib.SequenceMatcher(None, a, b).ratio()    
+def search_results(request):
+    if request.method == 'POST':
+        # print("sdjfsjd", request.POST)
+        search = request.POST.get('search').strip()
+        # print("search", search)
+        companies = Companies.objects.all()
+        tags = Tags.objects.all()
+        threshold = 0.6  # Adjust this threshold as needed
+        similar_tag = []
+        for tag in tags:
+            similarity_score = similarity(search, tag.name)
+            if similarity_score >= threshold:
+                similar_tag.append(tag)
+        threshold = 0.6
+        questions = []
+        questions += Questions.objects.filter(tags__in=similar_tag)  
+        similar_companies = []
+        for company in companies:
+            similarity_score = similarity(search, company.name)
+            if similarity_score >= threshold:
+                similar_companies.append(company)
+        questions += Questions.objects.filter(companies__in=similar_companies)  
+        questions += Questions.objects.filter(question__icontains=search)
+        return render(request, "questions/search_results.html", {
+            "search_value": search,
+            "questions": questions,
+            "count": len(questions)
+        })
 
 def  logout_view(request):
     request.session.clear()

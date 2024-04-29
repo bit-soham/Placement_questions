@@ -3,8 +3,9 @@
 <div class="main_container">
     <div class="main_heading">Questionnaire</div>
     <div class="search_block" style="width: 65%">
-        <form class="search_form">
-            <input type="search" placeholder="Search by topic/question" class="search" >
+        <form class="search_form" action="{% url 'search_results' %}" method="POST">
+            {% csrf_token %}
+            <input autocomplete="off" type="search" placeholder="Search by topic/question" name="search" class="search" >
             <button type="submit" class="search_button item"></button>
             <!-- <button class="voice-search item"></button> -->
         </form> 

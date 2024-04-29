@@ -1,8 +1,9 @@
 {% extends "questions/layout.html" %}
 {% block search %}
 <div class="search_block" style="width: 50vw; max-width: 600px; margin-top: 29px">
-    <form class="search_form" style="margin-right: 1vw">
-        <input type="search" placeholder="Search by topic/question" class="search" style="height: 115% !important" value="{{search_value}}">
+    <form class="search_form" style="margin-right: 1vw" action="{% url 'search_results' %}" method="POST">
+        {% csrf_token %}
+        <input type="search" placeholder="Search by topic/question" class="search" name="search"style="height: 115% !important" value="{{search_value}}">
         <button type="submit" class="search_button item"></button>
     </form> 
 </div>
@@ -10,7 +11,7 @@
 
 {% block content %}
 <div class="CQ_questions_block">
-        <div class="CQ_heading"><span style="color: gold; font-size: 2rem">{{count}}</span> Results found for <u style="color: gold">{{company}}</u></div>
+        <div class="CQ_heading"><span style="color: gold; font-size: 2rem">{{count}}</span> Results found for <u style="color: gold">{{search_value}}</u></div>
         {% for question in questions %}
             <a class="CQ_question_block" href="{% url 'view_question' question_id=question.id %}">
                 
@@ -26,10 +27,11 @@
                         <div style="font-weight: bold; font-size:1.2rem; color: white; font-family: 'Ubuntu-Medium'; color: rgba(239, 232, 34, 0.8)">Q) </div>
                         <div class="CQ_question">{{question.question}} ?</div>
                     </div>
-
+                    {% if question.image %}
                     <div class="CQ_question_image_container" >
                         <img class="CQ_question_image" src="{{question.image.url}}" height="100px">
                     </div>
+                    {% endif %}
                     <div  class="CQ_question_tags_block">
                         <div style="font-weight: bold; font-size:1rem; color: rgba(239, 232, 34, 0.8); font-family: 'Ubuntu-Medium'; ">Tags:</div>
                         <div  class="CQ_question_tags_container">

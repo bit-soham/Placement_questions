@@ -17,6 +17,7 @@ from django.template.loader import render_to_string # type: ignore
 from django.db import IntegrityError # type: ignore
 from django.core.files.uploadedfile import SimpleUploadedFile #type: ignore
 import json
+from django.db.models import Count#type: ignore
 # Create your views here.
 # SECRET_KEY = 'c544efcf10d5ecf720c9318e460cb3c2270a9637f34641142df4b437d43857df'
 
@@ -35,20 +36,13 @@ class NewCompanyForm(forms.Form):
     logo = forms.ImageField(widget=forms.FileInput(attrs={'class': 'Cform_logo', 'onchange': 'displayFileName()'}))
     website = forms.URLField(widget=forms.TextInput(attrs={'placeholder': 'Enter company website', 'class': 'Cform_website', 'autocomplete': 'off'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter company email', 'class': 'Cform_email', 'autocomplete': 'off'}))
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'Cform_description'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'Cform_description', 'placeholder': 'Enter other important points about the company that is needed'}))
     
-class NewQuestionsForm(forms.ModelForm):
-    class Meta: 
-        model = Questions
-        fields = ['question', 'image', 'company', 'tags', 'answer']
-        widgets = {
-            'question': forms.Textarea(attrs={'rows': 4, 'cols':40, 'id': 'Qform_description' }),
-            'image': forms.FileInput(attrs={'class': 'form-control Qform_image'}),
-            'company': forms.CharField(),
-            'tags': forms.TextInput(),
-            'answer': forms.Textarea(attrs={'rows': 4, 'cols': 40, 'id': 'Qform_answer' }),
-        }
-        
+class NewQuestionsForm(forms.Form):
+    question = forms.CharField(widget=forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'Qform_question', 'placeholder': 'Enter your question', 'id': 'question'}))
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'Qform_image ', 'onchange': 'displayImageName()'}), required=False)
+    answer = forms.CharField(widget=forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'Qform_answer', 'placeholder': 'Enter the answer'}))
+    tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'Qform_tags', 'placeholder': 'Create New Tags (Format:  #Tag1#Tag2#Tag3)'}), required=False)
         
     
 @login_required      
@@ -77,7 +71,14 @@ def verify_email(request, uid64, token):
         return HttpResponse("Email verification link is invalid.")
     
 def company_questions(request, company):
-    pass
+    
+    questions = Questions.objects.filter(companies=company)
+    
+    return render(request, "questions/company_questions.html", {
+        'company': company,
+        'count': len(questions),
+        'questions': questions
+    })
 
 def add_company(request):
     if request.method == 'POST':
@@ -110,7 +111,7 @@ def verify(request, user):
     else:
         return render("auctions/verify.html", {
             'user': user
-        })
+})
 def image(request, image_id):
     question = Questions.objects.get(pk=image_id)
     if question.image:    
@@ -241,21 +242,50 @@ def add_question(request):
         if form.is_valid():
             print("form is proved valid")
             # hashes = [hash.strip() for hash in item_hash.split(',') if hash.strip()]
-            tags = form.cleaned_data["tags"]
+            new_tags = form.cleaned_data["tags"]
             question = form.cleaned_data["question"]
-            company = form.cleaned_data["company"]
+            
             answer = form.cleaned_data["answer"]
             # parsed_datetime = datetime.strptime(last_bidding_datetime, '%m/%d/%Y %I:%M %p')
             image = form.cleaned_data["image"]
+            if image:
+                if Questions.objects.exists():
+                    new_file_name = str(Questions.objects.last().pk +1) + "." + image.name.split('.')[-1]
+                else:
+                    new_file_name = "1" + "." + image.name.split('.')[-1]
+                image = SimpleUploadedFile(new_file_name, image.read())
+            
+            tags = request.POST.getlist('tag')
+
+            companies = request.POST.getlist('companies')
+            
             user = request.user
             if not user: 
                 return render(request, "questions/login.html", {
                     'message': 'you need to login to sell an item'
                 })
             # hash_table = Hash_table.objects.all()
-            tags = tags.split('#')
-            Questions.objects.create(user=user, question=question, image=image, tags = tags, company=company, answer=answer)
-            
+            if new_tags:
+                new_tags = new_tags.split('#')[1:]
+                for tag in new_tags:
+                    Tags.objects.create(name=tag.strip())
+            # print(new_tags)
+            tags += new_tags
+            # print(tags)
+            tags_objects = []
+            for tag in tags:
+                tag = tag.strip().lower()
+                tag_obj, created = Tags.objects.get_or_create(name = tag)
+                tags_objects.append(tag_obj)
+            company_objs = []
+            for company in companies:
+                company = company.strip().title()
+                company_obj, created = Companies.objects.get_or_create(name = company)
+                company_objs.append(company_obj)
+                
+            question_obj = Questions.objects.create(user=user, question=question, image=image, answer=answer)
+            question_obj.tags.add(*tags_objects)
+            question_obj.companies.add(*company_objs)
             # item_instance.item_hash.add(*[Hash_table.objects.get_or_create(hash=hash)[0] for hash in hashes])
             # print(item_instance)
         else:
@@ -271,9 +301,31 @@ def add_question(request):
                         print(f"Excepted formatter: {expected_format}")
         return HttpResponseRedirect(reverse('index'))
     else:
+        tags = Tags.objects.all()
+        tag_names = list(Tags.objects.values_list('name', flat=True))
         return render(request, "questions/add_question.html", {
-            "forms": NewQuestionsForm()
+            "form": NewQuestionsForm(),
+            "companies": Companies.objects.all(),
+            "tags": tags,
+            "tag_names": json.dumps(tag_names)
         })
+        
+        
+def view_question(request, question_id):
+    question = Questions.objects.get(id=question_id)
+    similiar_questions = Questions.objects.exclude(id = question.id).filter(tags__in=question.tags.all()).annotate(num_common_tags=Count('tags')).order_by('-num_common_tags')
+    return render(request, "questions/view_question.html", {
+        "question": question,
+        "similiar_questions": similiar_questions
+    })
+    
+def search_results(request, search):
+    
+    return render(request, "questions/search_results.html", {
+        "search_value": search,
+        # "questions": questions,
+    })
+
 def  logout_view(request):
     request.session.clear()
     logout(request)

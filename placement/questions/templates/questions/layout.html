@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire</title>
     <link href="{% static 'style.css' %}" rel="stylesheet">
-    <script src="{% static 'scripts.js' %}"></script>
-    
-    
+    <script src="{% static 'scripts.js' %}"></script>   
 </head>
-<body class="mainbody">
+<body class="mainbody" style="overflow-x: hidden">
     <div class="nav-bar">
         <div class="nav-logo-block">
             <img class="nav-logo" src="{% static 'logo_nobg.png' %}" alt="logo">
         </div>
+        {% block search %}
+        {% endblock %}
         <div class="nav-links">
             <div class="nav-home-link">
                 <a href="{% url 'index' %}"><span>Home</span></a>
@@ -26,10 +26,30 @@
                 <a href="{% url 'add_question' %}"><span>Add Question</span></a>
             </div>
             <div class="nav-about-us">
-                <a href="{% url 'login' %}"><span>About Us</span></a>
+                <a href="{% url 'logout' %}"><span>Logout</span></a>
             </div>
         </div>
+        <div id="menu-icon" class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>         
+</div>
+<div class="side-bar">
+    <div class="nav-home-link">
+        <a href="{% url 'index' %}"><span>Home</span></a>
     </div>
+    <div class="nav-add-company">
+        <a href="{% url 'add_company' %}"><span>Add Company</span></a>
+    </div>
+    <div class="nav-add-question">
+        <a href="{% url 'add_question' %}"><span>Add Question</span></a>
+    </div>
+    <div class="nav-about-us">
+        <a href="{% url 'logout' %}"><span>Logout</span></a>
+    </div>
+</div>
     {% block content %}
     {% endblock %}
 </body>

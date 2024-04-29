@@ -1,0 +1,45 @@
+{% extends "questions/layout.html" %}
+{% block search %}
+<div class="search_block" style="width: 50vw; max-width: 600px; margin-top: 29px">
+    <form class="search_form" style="margin-right: 1vw">
+        <input type="search" placeholder="Search by topic/question" class="search" style="height: 115% !important" >
+        <button type="submit" class="search_button item"></button>
+    </form> 
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="CQ_questions_block">
+        <div class="CQ_heading"><span style="color: gold; font-size: 2rem">{{count}}</span> Results found for <u style="color: gold">{{company}}</u></div>
+        {% for question in questions %}
+            <a class="CQ_question_block" href="{% url 'view_question' question_id=question.id %}">
+                
+                    <div class="CQ_company_block" >
+                        {% for company in question.companies.all %}
+                            <div class="CQ_company_container" >
+                                <span class="CQ_green_dot"></span>
+                                <span class="CQ_company_name" >{{company.name}}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="CQ_question_container"  style="display: flex; padding-top: 10px; padding-left: 5px !important;">
+                        <div style="font-weight: bold; font-size:1.2rem; color: white; font-family: 'Ubuntu-Medium'; color: rgba(239, 232, 34, 0.8)">Q) </div>
+                        <div class="CQ_question">{{question.question}} ?</div>
+                    </div>
+
+                    <div class="CQ_question_image_container" >
+                        <img class="CQ_question_image" src="{{question.image.url}}" height="100px">
+                    </div>
+                    <div  class="CQ_question_tags_block">
+                        <div style="font-weight: bold; font-size:1rem; color: rgba(239, 232, 34, 0.8); font-family: 'Ubuntu-Medium'; ">Tags:</div>
+                        <div  class="CQ_question_tags_container">
+                        {% for tag in question.tags.all %}
+                            <div class="CQ_question_tag">#{{tag.name}}</div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

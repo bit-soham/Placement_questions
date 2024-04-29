@@ -1,4 +1,138 @@
 {% extends "questions/layout.html" %}
 {% block content %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            companies = document.querySelectorAll('.Qform_company_name');
+            tags = document.querySelectorAll('.Qform_tag_name');
+            
+            for (var i = 0; i < companies.length; i++){
+                companies[i].addEventListener('click', function(){
+                    this.previousElementSibling.click();
+                    // not the below one because by the time we cclick on it i has already become something else
+                    //companies[i].previousElementSibling.click();
+                });
+            }
+            for (var i = 0; i < tags.length; i++){
+                tags[i].addEventListener('click', function(){
+                    this.previousElementSibling.click();
+                });
+            }
+
+
+            function CheckName() {
+                var tag = document.querySelector(".Qform_tags").value;
+
+                tag = tag.split('#').slice(1);
+
+                var tags = "{{tag_names}}"
+                var sanitizedJsonData = tags.replace(/&quot;/g, '"');
+                tags = JSON.parse(sanitizedJsonData);
+                for (var i = 0; i < tags.length; i++) {
+                    var flag = false;
+                    for (var j = 0; j < tag.length; j++) {
+                        tag[j] = tag[j].trim();
+                        if (tags[i].toLowerCase() == tag[j].toLowerCase()) {
+                            document.querySelector(".Qform_tags").style.border = "1px solid red";
+                            document.querySelector(".Qform_tag_warning").style.display = "block";
+                            document.querySelector(".add_question_submit_btn").disabled = true;
+                            document.querySelector(".add_question_submit_btn").style.opacity = 0.2;
+                            flag = true;
+                            break;
+                        }
+                        else{
+                            document.querySelector(".Qform_tags").style.border = "1px solid transparent";
+                            document.querySelector(".Qform_tag_warning").style.display = "none";
+                            document.querySelector(".add_question_submit_btn").disabled = false;
+                            document.querySelector(".add_question_submit_btn").style.opacity = 1;
+                        }       
+                    }
+                    if (flag) {
+                        break;
+                    }
+                }
+            }
+            console.log("hello");
+            // Attach the event listener for keyup event
+            document.querySelector(".Qform_tags").addEventListener("keyup", CheckName);
+
+        });
+
+        function Search_results(type) {
     
+            var input = document.querySelector(".form_search_" + type).value;
+            filter = input.toLowerCase();
+            list = document.querySelectorAll(".Qform_" + type + "_name_container")
+            for (var i = 0; i < list.length; i++){
+                object_name = list[i].querySelector(".Qform_" + type + "_name").innerHTML;
+                if (object_name.toLowerCase().indexOf(filter) > -1){
+                    list[i].style.display = "";
+                }
+                else{
+                    list[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+    <div class="add_question_block">
+        <div class="add_question_heading"><span>New Question</span></div>
+        <form action="{% url 'add_question' %}" method="POST" enctype="multipart/form-data" class="Qform">
+            {% csrf_token %}
+            <div class="Qform_question_container">
+                <label class="Qform_label">Question</label>
+                {{form.question}}
+            </div>
+            <div class="companies_block">
+                <label class="Qform_label">Companies who asked this: </label>
+                <div class="search_company_block">
+                    <span><input type="search" placeholder="Search Company" class="form_search_company" onkeyup="Search_results('company')"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="100px" height="100px"><path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"/></svg>
+                </div>
+                <div class="form_search_result">
+                    {% for company in companies %}
+                    <div class="Qform_company_name_container">
+                        <input type="checkbox" name="companies" value="{{company.name}}">
+                        <label class="Qform_company_name">{{company.name}}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="Qform_image_block">
+                <span class="Qform_label">Any Images</span>
+                <div  class="Qform_image_container">
+                    <label id="file-label" >Click here to Choose File</label>
+                    <div class="custom-file-input">
+                        {{form.image}}
+                    </div>
+                    <!-- <div class="Qform_logo"></div> -->
+                </div>
+            </div>
+            <div class="Qform_answer_container">
+                <label class="Qform_label">Answer</label>
+                {{form.answer}}
+            </div>
+            <div class="tags_block">
+                <label class="Qform_label">Question Tags: </label>
+                <div class="search_tag_block">
+                    <span style="align-self: center"><input type="search" placeholder="Search tag" class="form_search_tag" onkeyup="Search_results('tag')"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="100px" height="100px"><path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"/></svg>
+                </div>
+                <div class="form_search_result">
+                    {% for tag in tags %}
+                    <div class="Qform_tag_name_container">
+                        <input type="checkbox" name="tag" value="{{tag.name}}">
+                        <label class="Qform_tag_name">{{tag.name}}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="Qform_new_tag_block">
+                    {{form.tags}}
+                    <span class="Qform_tag_warning"><span style="font-size: 1.3em">&#9888</span> &nbsp  Tag already present</span>
+                </div>
+            </div>
+            <div>
+            </div>
+            <button type="submit" class="add_question_submit_btn">Add Question</button>
+        </form>
+    </div>
+    <div style="position: absolute;height: 1300px; border: 1px solid transparent"></div>
 {% endblock %}

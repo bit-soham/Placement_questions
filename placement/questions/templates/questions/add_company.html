@@ -1,42 +1,13 @@
 {% extends "questions\layout.html" %}
 {% block content %}
-    <script>
-        
-
-        function displayFileName() {
-            var input = document.querySelector(".Cform_logo");
-            var fileNameDisplay = document.getElementById('file-label');
-            <!-- console.log(input.files[0].name); -->
-            if (input.files && input.files[0]){
-                //var reader = new FileReader();
-                //reader.onload = function(e){
-                //    document.querySelector(".custom-file-input label").textContent = e.target.result;
-                //}
-                //reader.readAsDataURL(input.files[0]);
-
-                fileNameDisplay.textContent = input.files[0].name;
-                fileNameDisplay.style.opacity = 1;
-            }
-            else{
-                fileNameDisplay.textContent = "Click here to Choose File";
-                fileNameDisplay.style.opacity = 0.5;
-            }
-            // Add event listener for when a file is selected
-        }
-
-          
-    </script>
     <script>        
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             function CheckName() {
-                var name = document.querySelector(".Cform_name").value;
-                var companies = "{{companies}}";
-                
+                var name = document.querySelector(".Cform_name").value.trim();
+                var companies = "{{companies}}"
                 var sanitizedJsonData = companies.replace(/&quot;/g, '"');
-
                 companies= JSON.parse(sanitizedJsonData);
-
                 for (var i = 0; i < companies.length; i++) {
                     if (companies[i].toLowerCase() == name.toLowerCase()) {
                         document.querySelector(".Cform_name").style.border = "1px solid red";
@@ -53,8 +24,8 @@
                     }
                 }
             }
-    
-            // Attach the event listener for keyup event
+            console.log("hello");
+        // Attach the event listener for keyup event
             document.querySelector(".Cform_name").addEventListener("keyup", CheckName);
         });
     </script>
